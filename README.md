@@ -18,26 +18,26 @@
 
 ### Reading icoData
 ```cs
-var IcoReader = new IcoReader();
+var icoReader = new IcoReader();
 
 // Reading from a file path (most memory-efficient)
-IcoData iconFromPath = IcoReader.Read("path/to/your/icon.ico");
-IcoData cursorFromPath = IcoReader.Read("path/to/your/cursor.cur");
-IcoData icoFromPathDll = IcoReader.Read("path/to/your/user32.dll");
-IcoData icoFromPathEXE = IcoReader.Read("path/to/your/regedit.exe");
+IcoData iconFromPath = icoReader.Read("path/to/your/icon.ico");
+IcoData cursorFromPath = icoReader.Read("path/to/your/cursor.cur");
+IcoData icoFromPathDll = icoReader.Read("path/to/your/user32.dll");
+IcoData icoFromPathEXE = icoReader.Read("path/to/your/regedit.exe");
 
 // Reading from a byte array
 byte[] icoBytes = File.ReadAllBytes("path/to/your/icon.ico");
-IcoData icoFromBytes = IcoReader.Read(icoBytes);
+IcoData icoFromBytes = icoReader.Read(icoBytes);
 
 // Reading from a stream (copies the stream for independent access)
 using var stream = File.OpenRead("path/to/your/icon.ico")
-IcoData icoFromStream = IcoReader.Read(stream: stream, copyStream: true);
+IcoData icoFromStream = icoReader.Read(stream: stream, copyStream: true);
 
 // Reading from a stream without copying (as efficient as direct file reading)
 using (var streamOrigin = File.OpenRead("path/to/your/icon.ico"))
 {
-    IcoData icoFromStreamDirect = IcoReader.Read(stream: streamOrigin, copyStream: false);
+    IcoData icoFromStreamDirect = icoReader.Read(stream: streamOrigin, copyStream: false);
     // ✅ This is as memory-efficient as reading directly from a file.
     // 🔴 WARNING: All images must be accessed before closing the stream, 
     // otherwise an error will occur.
