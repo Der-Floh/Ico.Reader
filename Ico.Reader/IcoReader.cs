@@ -1,6 +1,6 @@
 ﻿using Ico.Reader.Data;
-using Ico.Reader.Data.IcoSources;
 using Ico.Reader.Data.Source;
+using Ico.Reader.Utils;
 
 namespace Ico.Reader;
 /// <summary>
@@ -14,12 +14,18 @@ public sealed class IcoReader
     /// Initializes a new instance of the icoReader class with a specific configuration.
     /// </summary>
     /// <param name="icoReaderConfiguration">The configuration settings to use for reading ico's.</param>
-    public IcoReader(IcoReaderConfiguration icoReaderConfiguration) => _icoReaderConfiguration = icoReaderConfiguration;
+    public IcoReader(IcoReaderConfiguration icoReaderConfiguration)
+    {
+        _icoReaderConfiguration = icoReaderConfiguration;
+    }
 
     /// <summary>
     /// Initializes a new instance of the icoReader class with default configuration settings.
     /// </summary>
-    public IcoReader() => _icoReaderConfiguration = new IcoReaderConfiguration();
+    public IcoReader()
+    {
+        _icoReaderConfiguration = new IcoReaderConfiguration();
+    }
 
     /// <summary>
     /// Reads ico data from a specified file path.
@@ -135,7 +141,7 @@ public sealed class IcoReader
             return null;
         }
 
-        decodedicoResult.IcoGroups[0].DirectoryEntries = IIcoDirectoryEntry.ReadEntriesFromStream(stream, decodedicoResult.IcoGroups[0].Header!);
+        decodedicoResult.IcoGroups[0].DirectoryEntries = IcoDirectoryEntryUtils.ReadEntriesFromStream(stream, decodedicoResult.IcoGroups[0].Header!);
         decodedicoResult.References = new List<ImageReference>(decodedicoResult.IcoGroups[0].DirectoryEntries!.Length);
         for (var i = 0; i < decodedicoResult.IcoGroups[0].DirectoryEntries!.Length; i++)
         {
@@ -177,5 +183,4 @@ public sealed class IcoReader
 
         return decodedicoResult;
     }
-
 }

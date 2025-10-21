@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
+using CommonShims;
+
 namespace PeDecoder.Models;
 
 public class OptionalHeader
@@ -35,7 +37,6 @@ public class OptionalHeader
     public uint SizeOfHeapCommit { get; set; }
     public uint LoaderFlags { get; set; }
     public uint NumberOfRvaAndSizes { get; set; }
-
 
     public ImageDataDirectory? ExportTable { get; set; }
     public ImageDataDirectory? ImportTable { get; set; }

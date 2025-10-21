@@ -1,6 +1,5 @@
-﻿using Ico.Reader.Data.IcoSources;
+﻿namespace Ico.Reader.Data.Source;
 
-namespace Ico.Reader.Data.Source;
 public sealed class PathSource : IDataSource
 {
     private readonly string _originPath;

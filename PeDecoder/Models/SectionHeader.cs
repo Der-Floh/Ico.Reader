@@ -1,13 +1,15 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 
+using CommonShims;
+
 namespace PeDecoder.Models;
 // https://learn.microsoft.com/en-gb/windows/win32/debug/pe-format?redirectedfrom=MSDN#section-table-section-headers
 public class SectionHeader
 {
     public const uint SectionSize = 40;
 
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
     public uint VirtualSize { get; set; }
     public uint VirtualAddress { get; set; }
     public uint SizeOfRawData { get; set; }
@@ -33,14 +35,14 @@ public class SectionHeader
         ReadOnlySpan<byte> readOnlyData = data;
         Span<char> nameChars = stackalloc char[8];
 
-        for (int i = 0; i < peHeader.NumberOfSections; i++)
+        for (var i = 0; i < peHeader.NumberOfSections; i++)
         {
             var sectionIndex = i * (int)SectionSize;
 
             sections[i] = new SectionHeader();
 
             Encoding.UTF8.GetChars(readOnlyData.Slice(sectionIndex, 8), nameChars);
-            sections[i].Name = new string(nameChars).Trim('\0');
+            sections[i].Name = nameChars.ToStringFast().Trim('\0');
 
             sections[i].VirtualSize = MemoryMarshal.Read<uint>(readOnlyData.Slice(sectionIndex + 8, 4));
             sections[i].VirtualAddress = MemoryMarshal.Read<uint>(readOnlyData.Slice(sectionIndex + 12, 4));

@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
+using CommonShims;
+
 namespace PeDecoder.Models;
 
 /// <summary>

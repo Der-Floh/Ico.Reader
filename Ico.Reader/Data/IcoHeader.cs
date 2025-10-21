@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
+using CommonShims;
+
 namespace Ico.Reader.Data;
 /// <summary>
 /// Represents the header of an ico resource, detailing the ico's format and the number of images it contains.

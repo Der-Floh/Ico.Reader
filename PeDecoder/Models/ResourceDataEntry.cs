@@ -1,6 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 
+using CommonShims;
+
 namespace PeDecoder.Models;
+
 public class ResourceDataEntry
 {
     public uint ID { get; set; }

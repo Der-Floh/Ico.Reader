@@ -1,6 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 
+using CommonShims;
+
 namespace PeDecoder.Models;
+
 public class PE_Header
 {
     public const uint PeHeaderSize = 24;
