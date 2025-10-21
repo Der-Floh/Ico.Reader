@@ -123,9 +123,13 @@ You can retrieve the preferred image either **globally** (from all groups) or **
 ```cs
 // Selecting the preferred image globally from all groups
 int preferredIndex = icoData.PreferredImageIndex(colorBitWeight: 2f);
+var imageRef = icoData.ImageReferences[imageIndex];
+var imageData = icoData.GetImage(imageRef);
 
 // Selecting the preferred image from a specific group
 int preferredGroupIndex = icoData.PreferredImageIndex(selectedGroup, colorBitWeight: 2f);
+var imageRef = icoData.ImageReferences[preferredGroupIndex];
+var imageData = icoData.GetImage(imageRef);
 ```
 
 ## Dependency Injection Support

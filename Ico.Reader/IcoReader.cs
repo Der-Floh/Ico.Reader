@@ -38,7 +38,7 @@ public sealed class IcoReader
             return null;
 
         var icoSource = new PathSource(filePath);
-        using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, 0, false);
+        using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
 
         var IcoData = ReadFromStream(stream, icoSource);
         if (IcoData is null)
